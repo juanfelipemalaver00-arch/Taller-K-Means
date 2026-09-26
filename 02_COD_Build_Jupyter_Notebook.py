@@ -20,12 +20,13 @@ fig5_b64 = get_base64_img("Out_01_fig5_pca_biplot_clusters.png")
 nb = nbf.v4.new_notebook()
 cells = []
 
-# Title cell
+# Title cell with GitHub link
 c1_md = """# Taller: Selecting the Site of Andina Distribuciones’ New CDC
 **Estudiante / Consultor:** Juan Malaver  
 **Asignatura:** Supply Chain Analytics / Proyecto Empresarial  
 **Universidad:** Universidad del Rosario — Escuela de Ciencias e Ingeniería  
 **Profesor:** Alexander Garrido, Ph.D.  
+**Repositorio GitHub:** [https://github.com/juanfelipemalaver00-arch/Taller-K-Means](https://github.com/juanfelipemalaver00-arch/Taller-K-Means)  
 **Fecha:** 26 de Septiembre de 2026  
 
 ---
@@ -129,6 +130,7 @@ c4_md = """---
 
 **PARA:** Gerente General, Andina Distribuciones S.A.S. | **DE:** Grupo de Analítica Logística  
 **ASUNTO:** Respuestas a Requerimientos A–E del Documento Rector  
+**CÓDIGO & REPOSITORIO GITHUB:** [https://github.com/juanmalaver/andina-distribuciones-cdc](https://github.com/juanmalaver/andina-distribuciones-cdc)  
 
 ### Part A — Global Weighted Center of Gravity (CoG)
 Para $k=1$, las coordenadas CoG son **Lat 5.6092° N, Lon -74.8778° W**. 

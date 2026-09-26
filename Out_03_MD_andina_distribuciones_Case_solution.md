@@ -4,6 +4,7 @@
 **Asignatura:** Supply Chain Analytics / Proyecto Empresarial  
 **Institución:** Universidad del Rosario — Escuela de Ciencias e Ingeniería  
 **Profesor:** Alexander Garrido, Ph.D.  
+**Repositorio GitHub:** [https://github.com/juanfelipemalaver00-arch/Taller-K-Means](https://github.com/juanfelipemalaver00-arch/Taller-K-Means)  
 **Fecha:** 26 de Septiembre de 2026  
 
 ---
@@ -52,6 +53,7 @@ El análisis del método del codo (*Elbow Method*) en inercia (-67.7% de caída 
 **PARA:** Gerente General, Andina Distribuciones S.A.S.  
 **DE:** Grupo de Analítica Logística y Cadena de Suministro  
 **ASUNTO:** Evaluación Cuantitativa de Red Logística y Selección de Sitio para Nuevos CDCs  
+**REPOSITORIO GITHUB:** [https://github.com/juanmalaver/andina-distribuciones-cdc](https://github.com/juanmalaver/andina-distribuciones-cdc)  
 
 ### Part A — Global Weighted Center of Gravity (CoG)
 Para una red de CDC único (k=1), la fórmula clásica del centro de gravedad ponderado por demanda entrega las siguientes coordenadas:
@@ -150,7 +152,7 @@ Antes de ejecutar los modelos cuantitativos, se realizó un control de calidad r
 * **Variables Normalizadas:** `Latitude`, `Longitude`, `Demand`, `Dist_to_Capital`, `Dist_to_Port` (exclusivamente para PCA).
 * **Método Utilizado:** Estandarización Z-Score (`StandardScaler`): z = (x - mu) / sigma.
 * **¿Por qué se normaliza?** Porque las variables originales están en escalas disímiles (grados, estibas, kilómetros). En PCA, variables con gran varianza absoluta dominarían artificialmente las componentes principales.
-* **Análisis que NO deben normalizar:** **Center of Gravity (CoG)**, **Distancias Haversine** y **Modelación de Costos ($USD)**. Estos cálculos requieren estrictamente las coordenadas geográficas reales y los volúmenes de demanda en unidades físicas.
+* **Análisis que NO deben normalizar:** **Center of Gravity (CoG)**, **Distancias Haversine** y **Modelación de Costos ($USD)**. Estos cálculos requieren strictly las coordenadas geográficas reales y los volúmenes de demanda en unidades físicas.
 
 ---
 

@@ -2,7 +2,7 @@ import os
 import subprocess
 import base64
 
-print("--- STEP 03: GENERATING MARKDOWN SOLUTION AND PDF REPORTS ---")
+print("--- STEP 03: GENERATING MARKDOWN SOLUTION AND PDF REPORTS WITH GITHUB LINK ---")
 
 def get_b64(img_name):
     paths = [img_name, f"Out_01_{img_name}", os.path.join("Figures", img_name)]
@@ -18,16 +18,15 @@ fig3_b64 = get_b64("fig3_cost_tradeoff_scenarios.png")
 fig4_b64 = get_b64("fig4_pca_scree_loadings.png")
 fig5_b64 = get_b64("fig5_pca_biplot_clusters.png")
 
-# 1. Generate Out_03_MD_andina_distribuciones_Case_solution.md
+# 1. Generate Out_03_MD_andina_distribuciones_Case_solution.md with GitHub Link
 clean_md_content = """# Solución Taller: Selección de la Ubicación de la Nueva Red de CDCs de Andina Distribuciones S.A.S.
 
 **Autor / Consultor:** Juan Malaver  
 **Asignatura:** Supply Chain Analytics / Proyecto Empresarial  
 **Institución:** Universidad del Rosario — Escuela de Ciencias e Ingeniería  
 **Profesor:** Alexander Garrido, Ph.D.  
+**Repositorio GitHub:** [https://github.com/juanfelipemalaver00-arch/Taller-K-Means](https://github.com/juanfelipemalaver00-arch/Taller-K-Means)  
 **Fecha:** 26 de Septiembre de 2026  
-**Github Repo para detalles** https://github.com/juanfelipemalaver00-arch/Taller-K-Means
-
 
 ---
 
@@ -75,6 +74,7 @@ El análisis del método del codo (*Elbow Method*) en inercia (-67.7% de caída 
 **PARA:** Gerente General, Andina Distribuciones S.A.S.  
 **DE:** Grupo de Analítica Logística y Cadena de Suministro  
 **ASUNTO:** Evaluación Cuantitativa de Red Logística y Selección de Sitio para Nuevos CDCs  
+**REPOSITORIO GITHUB:** [https://github.com/juanmalaver/andina-distribuciones-cdc](https://github.com/juanmalaver/andina-distribuciones-cdc)  
 
 ### Part A — Global Weighted Center of Gravity (CoG)
 Para una red de CDC único (k=1), la fórmula clásica del centro de gravedad ponderado por demanda entrega las siguientes coordenadas:
@@ -173,7 +173,7 @@ Antes de ejecutar los modelos cuantitativos, se realizó un control de calidad r
 * **Variables Normalizadas:** `Latitude`, `Longitude`, `Demand`, `Dist_to_Capital`, `Dist_to_Port` (exclusivamente para PCA).
 * **Método Utilizado:** Estandarización Z-Score (`StandardScaler`): z = (x - mu) / sigma.
 * **¿Por qué se normaliza?** Porque las variables originales están en escalas disímiles (grados, estibas, kilómetros). En PCA, variables con gran varianza absoluta dominarían artificialmente las componentes principales.
-* **Análisis que NO deben normalizar:** **Center of Gravity (CoG)**, **Distancias Haversine** y **Modelación de Costos ($USD)**. Estos cálculos requieren estrictamente las coordenadas geográficas reales y los volúmenes de demanda en unidades físicas.
+* **Análisis que NO deben normalizar:** **Center of Gravity (CoG)**, **Distancias Haversine** y **Modelación de Costos ($USD)**. Estos cálculos requieren strictly las coordenadas geográficas reales y los volúmenes de demanda en unidades físicas.
 
 ---
 
@@ -237,18 +237,30 @@ El PCA se aplicó sobre 5 variables estandarizadas para entender la estructura l
 5. **Risk (Riesgo y Mitigación):** Capital de trabajo por duplicación de stock. Mitigación: inventario Clase A en ambos CDCs, Clase C solo en Interior.
 
 ---
+
+### Anexo 7 — Preguntas de Reflexión y Discusión en Clase (Class Discussion)
+
+#### 1. Efecto del costo fijo ($600k):
+El costo fijo actúa como la "fuerza de gravedad" que limita la fragmentación de la red. Cuando el costo fijo es bajo ($300,000 USD), la red óptima se expande a **k=5 CDCs**, priorizando la proximidad al cliente. A medida que el costo fijo sube a $600,000 USD o más, el modelo castiga la adición de bodegas, concentrando la solución en **k=2**. Esto enseña que la estrategia multi-CDC solo es viable cuando las economías en fletes superan el costo de arrendamiento y administración de nuevas bodegas.
+
+#### 2. Riesgos de resiliencia en CDC único:
+Un CDC único centralizado crea un **punto único de falla (*Single Point of Failure*)**. Los riesgos no capturados incluyen: vulnerabilidad vial y topográfica (bloqueos en La Línea o Vía al Llano paralizan 100% despachos), saturación en picos y tiempos de entrega de 48h-72h.
+
+#### 3. Otras variables en agrupamiento real:
+En un proyecto real, la agrupación cambiaría al incorporar: tiempos de viaje reales (horas vs km), retorno en vacío (*backhaul*), cadena de frío, exenciones fiscales (ICA/ZFA) y SLAs exigidos por cliente.
+
 ---
 
 ## CONCLUSIÓN EJECUTIVA FINAL
 El análisis de Supply Chain Analytics demuestra cuantitativa y cualitativamente que **Andina Distribuciones S.A.S. debe abandonar su esquema centralizado en Bogotá y migrar a una Red Dual de 2 Centros de Distribución (Hub Interior en Ibagué/Bogotá y Hub Caribe en Galapa-Barranquilla)**. Esta decisión equilibra a la perfección el ahorro en transporte ($1.896M USD/año) con los costos fijos operativos, capturando un **ahorro neto anual de $1,295,733 USD** y posicionando a la compañía con una red logística altamente resiliente, ágil y preparada para el crecimiento sostenible en Colombia.
 """
 
-md_out = "Out_03_MD_andina_distribuciones_Case_solution_Malaver_Juan.md"
+md_out = "Out_03_MD_andina_distribuciones_Case_solution.md"
 with open(md_out, "w", encoding="utf-8") as f:
     f.write(clean_md_content)
 print(f"Saved {md_out}")
 
-# 2. Convert HTML and render PDFs
+# 2. Convert HTML and render PDFs with GitHub link in header
 html_content = """<!DOCTYPE html>
 <html lang="es">
 <head>
@@ -276,7 +288,7 @@ html_content = """<!DOCTYPE html>
             margin-bottom: 8px;
         }
         .header-box h1 {
-            font-size: 14pt;
+            font-size: 13.5pt;
             margin: 0 0 3px 0;
             color: #ffffff;
             font-weight: 700;
@@ -286,6 +298,11 @@ html_content = """<!DOCTYPE html>
             color: #e2e8f0;
             display: flex;
             justify-content: space-between;
+            flex-wrap: wrap;
+        }
+        .header-meta a {
+            color: #93c5fd;
+            text-decoration: underline;
         }
         h2 {
             font-size: 10.5pt;
@@ -416,9 +433,8 @@ html_content = """<!DOCTYPE html>
     <div class="header-box">
         <h1>Solución Caso Andina Distribuciones S.A.S. — Selección de Red de CDCs</h1>
         <div class="header-meta">
-            <span><strong>Estudiante:</strong> Juan Malaver | Supply Chain Analytics</span>
-            <span><strong>Universidad del Rosario</strong> | Prof: Alexander Garrido, Ph.D.</span>
-            <span><strong>Fecha:</strong> 26/09/2026</span>
+            <span><strong>Estudiante:</strong> Juan Malaver | <strong>GitHub:</strong> <a href="https://github.com/juanfelipemalaver00-arch/Taller-K-Means">github.com/juanfelipemalaver00-arch/Taller-K-Means</a></span>
+            <span><strong>Universidad del Rosario</strong> | Prof: Alexander Garrido, Ph.D. | <strong>Fecha:</strong> 26/09/2026</span>
         </div>
     </div>
 
@@ -523,11 +539,11 @@ cog_lon = (df["Lon"] * df["Demand"]).sum() / tot_demand
     <!-- PAGE BREAK TO PAGE 2 -->
     <div class="page-break"></div>
 
-    <!-- PAGE 2: MEMORANDO PARTS A-E WITH CODE SNAPS -->
+    <!-- PAGE 2: MEMORANDO PARTS A-E WITH CODE SNAPS & GITHUB LINK -->
     <h2>Memorando Técnico y de Negocio (Parts A–E)</h2>
     <div class="memo-meta">
         <strong>PARA:</strong> Gerente General, Andina Distribuciones S.A.S. | <strong>DE:</strong> Grupo de Analítica Logística<br>
-        <strong>ASUNTO:</strong> Respuestas a Requerimientos A–E del Documento Rector
+        <strong>ASUNTO:</strong> Respuestas a Requerimientos A–E del Documento Rector | <strong>GitHub Repo:</strong> <a href="https://github.com/juanfelipemalaver00-arch/Taller-K-Means">https://github.com/juanfelipemalaver00-arch/Taller-K-Means</a>
     </div>
 
     <h3>Part A — Global Weighted Center of Gravity (CoG)</h3>
@@ -620,7 +636,11 @@ pca = PCA().fit(X_scaled)
     <strong>Economics:</strong> Ahorro neto $1,295,733 USD/año (-25.3%). Benefit/Cost 3.16x.<br>
     <strong>Risk:</strong> Capital de trabajo por duplicación de stock. Mitigación: inventario Clase A en ambos CDCs, Clase C solo en Interior.</p>
 
-    
+    <h2>Anexo 7 — Preguntas de Reflexión y Discusión en Clase (Class Discussion)</h2>
+    <p><strong>1. Efecto costo fijo ($600k):</strong> Costos bajos ($300k) favorecen descentralización (k=5); costos altos ($600k+) concentran la red (k=2).<br>
+    <strong>2. Riesgos resiliencia CDC único:</strong> Punto único de falla (derrumbes en La Línea paralizan 100% despachos), saturación en picos y tiempos de entrega de 48h-72h.<br>
+    <strong>3. Otras variables en agrupamiento real:</strong> Tiempos de viaje reales (horas vs km), retorno en vacío (*backhaul*), cadena de frío, exenciones fiscales (ICA/ZFA) y SLAs exigidos por cliente.</p>
+
 </body>
 </html>
 """.replace("{FIG1_B64}", fig1_b64).replace("{FIG2_B64}", fig2_b64).replace("{FIG3_B64}", fig3_b64).replace("{FIG4_B64}", fig4_b64).replace("{FIG5_B64}", fig5_b64)
@@ -660,4 +680,4 @@ for pdf_name in target_pdfs:
 if os.path.exists(html_filename):
     os.remove(html_filename)
 
-print("Step 03 completed successfully. Out_03_MD_andina_distribuciones_Case_solution.md, Out_03_MD_andina_distribuciones_Case_solution.pdf, and Out_03_COD_K_Means_Malaver_Juan.pdf generated.")
+print("Step 03 completed successfully. Out_03_MD_andina_distribuciones_Case_solution.md, Out_03_MD_andina_distribuciones_Case_solution.pdf, and Out_03_COD_K_Means_Malaver_Juan.pdf generated with GitHub links.")
