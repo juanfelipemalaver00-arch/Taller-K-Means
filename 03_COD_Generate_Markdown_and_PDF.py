@@ -237,25 +237,13 @@ El PCA se aplicó sobre 5 variables estandarizadas para entender la estructura l
 5. **Risk (Riesgo y Mitigación):** Capital de trabajo por duplicación de stock. Mitigación: inventario Clase A en ambos CDCs, Clase C solo en Interior.
 
 ---
-
-### Anexo 7 — Preguntas de Reflexión y Discusión en Clase (Class Discussion)
-
-#### 1. Efecto del costo fijo ($600k):
-El costo fijo actúa como la "fuerza de gravedad" que limita la fragmentación de la red. Cuando el costo fijo es bajo ($300,000 USD), la red óptima se expande a **k=5 CDCs**, priorizando la proximidad al cliente. A medida que el costo fijo sube a $600,000 USD o más, el modelo castiga la adición de bodegas, concentrando la solución en **k=2**. Esto enseña que la estrategia multi-CDC solo es viable cuando las economías en fletes superan el costo de arrendamiento y administración de nuevas bodegas.
-
-#### 2. Riesgos de resiliencia en CDC único:
-Un CDC único centralizado crea un **punto único de falla (*Single Point of Failure*)**. Los riesgos no capturados incluyen: vulnerabilidad vial y topográfica (bloqueos en La Línea o Vía al Llano paralizan 100% despachos), saturación en picos y tiempos de entrega de 48h-72h.
-
-#### 3. Otras variables en agrupamiento real:
-En un proyecto real, la agrupación cambiaría al incorporar: tiempos de viaje reales (horas vs km), retorno en vacío (*backhaul*), cadena de frío, exenciones fiscales (ICA/ZFA) y SLAs exigidos por cliente.
-
 ---
 
 ## CONCLUSIÓN EJECUTIVA FINAL
 El análisis de Supply Chain Analytics demuestra cuantitativa y cualitativamente que **Andina Distribuciones S.A.S. debe abandonar su esquema centralizado en Bogotá y migrar a una Red Dual de 2 Centros de Distribución (Hub Interior en Ibagué/Bogotá y Hub Caribe en Galapa-Barranquilla)**. Esta decisión equilibra a la perfección el ahorro en transporte ($1.896M USD/año) con los costos fijos operativos, capturando un **ahorro neto anual de $1,295,733 USD** y posicionando a la compañía con una red logística altamente resiliente, ágil y preparada para el crecimiento sostenible en Colombia.
 """
 
-md_out = "Out_03_MD_andina_distribuciones_Case_solution.md"
+md_out = "Out_03_MD_andina_distribuciones_Case_solution_Malaver_Juan.md"
 with open(md_out, "w", encoding="utf-8") as f:
     f.write(clean_md_content)
 print(f"Saved {md_out}")
@@ -632,11 +620,7 @@ pca = PCA().fit(X_scaled)
     <strong>Economics:</strong> Ahorro neto $1,295,733 USD/año (-25.3%). Benefit/Cost 3.16x.<br>
     <strong>Risk:</strong> Capital de trabajo por duplicación de stock. Mitigación: inventario Clase A en ambos CDCs, Clase C solo en Interior.</p>
 
-    <h2>Anexo 7 — Preguntas de Reflexión y Discusión en Clase (Class Discussion)</h2>
-    <p><strong>1. Efecto costo fijo ($600k):</strong> Costos bajos ($300k) favorecen descentralización (k=5); costos altos ($600k+) concentran la red (k=2).<br>
-    <strong>2. Riesgos resiliencia CDC único:</strong> Punto único de falla (derrumbes en La Línea paralizan 100% despachos), saturación en picos y tiempos de entrega de 48h-72h.<br>
-    <strong>3. Otras variables en agrupamiento real:</strong> Tiempos de viaje reales (horas vs km), retorno en vacío (*backhaul*), cadena de frío, exenciones fiscales (ICA/ZFA) y SLAs exigidos por cliente.</p>
-
+    
 </body>
 </html>
 """.replace("{FIG1_B64}", fig1_b64).replace("{FIG2_B64}", fig2_b64).replace("{FIG3_B64}", fig3_b64).replace("{FIG4_B64}", fig4_b64).replace("{FIG5_B64}", fig5_b64)
