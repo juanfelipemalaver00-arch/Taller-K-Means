@@ -26,6 +26,8 @@ clean_md_content = """# Solución Taller: Selección de la Ubicación de la Nuev
 **Institución:** Universidad del Rosario — Escuela de Ciencias e Ingeniería  
 **Profesor:** Alexander Garrido, Ph.D.  
 **Fecha:** 26 de Septiembre de 2026  
+**Github Repo para detalles** https://github.com/juanfelipemalaver00-arch/Taller-K-Means
+
 
 ---
 
